@@ -1,1 +1,45 @@
-Sequence Diagram SPA created with https://mermaid.js.org/
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <pre class="mermaid">
+        sequenceDiagram
+
+participant browser
+participant server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+    activate server
+    server->>browser: HTML document
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server->>browser: the css file
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+    activate server
+    server->>browser: the JavaScript file
+    deactivate server
+
+    Note right of browser: The browser starts executing the JavaScript code that fetches the JSON from the server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server->>browser: [{ "content": "test", "date": "2024-10-22T16:46:55.073Z" }, ... ]
+    deactivate server
+
+    Note right of browser: The browser executes the callback function that renders the spa
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+    server->>browser: {"message":"note created"}
+    deactivate server
+
+    </pre>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    </script>
+
+  </body>
+</html>
